@@ -1,11 +1,11 @@
 package org.wit.ca1.console.main
 
 import mu.KotlinLogging
+import org.wit.ca1.console.models.RecipeModel
 
 private val logger = KotlinLogging.logger {}
 
-var title = ""
-var ingred = ""
+var recipe = RecipeModel()
 
 fun main(args: Array<String>) {
     logger.info { "Launching Recipe Console App" }
@@ -51,20 +51,22 @@ fun addRecipe(){
     println("Add Recipe")
     println()
     print("Enter a Title : ")
-    title = readLine()!!
+    recipe.title = readLine()!!
     print("Enter Ingredients : ")
-    ingred = readLine()!!
-    println("You entered $title for title and $ingred for ingredients.")
+    recipe.ingred = readLine()!!
+    println("You entered [ " + recipe.title + " ] for title " +
+            "and [ " + recipe.ingred + " ] for description")
 }
 
 fun updateRecipe() {
     println("Update Recipe")
     println()
-    print("Enter a new Title for [ $title ] : ")
-    title = readLine()!!
-    print("Enter a new Description for [ $ingred ] : ")
-    ingred = readLine()!!
-    println("You updated [ $title ] for title and [ $ingred ] for description")
+    print("Enter a new Title for [ " + recipe.title + " ] : ")
+    recipe.title = readLine()!!
+    print("Enter updated ingredients for [ " + recipe.ingred + " ] : ")
+    recipe.ingred = readLine()!!
+    println("You updated [ " + recipe.title + " ] for title " +
+            "and [ " + recipe.ingred + " ] for description")
 }
 
 fun listRecipes() {
