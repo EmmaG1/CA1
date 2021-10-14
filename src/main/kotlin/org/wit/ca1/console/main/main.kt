@@ -3,9 +3,11 @@ package org.wit.ca1.console.main
 import mu.KotlinLogging
 import org.wit.ca1.console.models.RecipeModel
 
+
 private val logger = KotlinLogging.logger {}
 
 var recipe = RecipeModel()
+val recipes = ArrayList<RecipeModel>()
 
 fun main(args: Array<String>) {
     logger.info { "Launching Recipe Console App" }
@@ -54,8 +56,14 @@ fun addRecipe(){
     recipe.title = readLine()!!
     print("Enter Ingredients : ")
     recipe.ingred = readLine()!!
-    println("You entered [ " + recipe.title + " ] for title " +
-            "and [ " + recipe.ingred + " ] for description")
+
+    if (recipe.title.isNotEmpty() && recipe.ingred.isNotEmpty()) {
+        recipes.add(recipe.copy())
+        logger.info("Recipe Added : [ $recipe ]")
+    }
+    else
+        logger.info("Recipe Not Added")
+    recipe.id++
 }
 
 fun updateRecipe() {
@@ -66,9 +74,28 @@ fun updateRecipe() {
     print("Enter updated ingredients for [ " + recipe.ingred + " ] : ")
     recipe.ingred = readLine()!!
     println("You updated [ " + recipe.title + " ] for title " +
-            "and [ " + recipe.ingred + " ] for description")
+            "and [ " + recipe.ingred + " ] for ingredients")
 }
 
 fun listRecipes() {
-    println("You Chose List All Recipes")
+    println("List All Recipes")
+    println()
+    recipes.forEach { logger.info("${it}") }
+}
+
+fun getId() : Long {
+    var strId : String? // String to hold user input
+    var searchId : Long // Long to hold converted id
+    print("Enter id to Search/Update : ")
+    strId = readLine()!!
+    searchId = if (strId.toLongOrNull() != null && !strId.isEmpty())
+        strId.toLong()
+    else
+        -9
+    return searchId
+}
+
+fun search(id: Long) : RecipeModel? {
+    var foundPlacemark: RecipeModel? = recipes.find { p -> p.id == id }
+    return foundPlacemark
 }
