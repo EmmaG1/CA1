@@ -1,7 +1,8 @@
 package org.wit.ca1.console.views
 
-import org.wit.ca1.console.main.recipeView
-import org.wit.ca1.console.main.recipes
+//import org.wit.ca1.console.main.recipeView
+//import org.wit.ca1.console.main.recipes
+import org.wit.ca1.console.models.RecipeJSONStore
 import org.wit.ca1.console.models.RecipeMemStore
 import org.wit.ca1.console.models.RecipeModel
 
@@ -28,7 +29,7 @@ class RecipeView {
         return option
     }
 
-    fun listRecipes(recipes : RecipeMemStore) {
+    fun listRecipes(recipes : RecipeJSONStore) {
         println("List All Recipes")
         println()
         recipes.logAll()
@@ -43,8 +44,6 @@ class RecipeView {
     }
 
     fun addRecipeData(recipe : RecipeModel) : Boolean {
-
-        println()
         print("Enter a Title : ")
         recipe.title = readLine()!!
         print("Enter Ingredients : ")

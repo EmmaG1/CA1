@@ -1,19 +1,40 @@
 package org.wit.ca1.console.controllers
 
 import mu.KotlinLogging
+import org.wit.ca1.console.models.RecipeJSONStore
 import org.wit.ca1.console.models.RecipeMemStore
 import org.wit.ca1.console.models.RecipeModel
 import org.wit.ca1.console.views.RecipeView
 
 class RecipeController {
 
-    val recipes = RecipeMemStore()
+    //val recipes = RecipeMemStore()
+    val recipes = RecipeJSONStore()
     val recipeView = RecipeView()
     val logger = KotlinLogging.logger {}
 
     init {
         logger.info { "Launching Recipe Console App" }
-        println("Recipe Kotlin App Version 1.0")
+        println("Recipe Kotlin App Version 2.0")
+    }
+
+    fun start() {
+        var input: Int
+
+        do {
+            input = menu()
+            when (input) {
+                1 -> add()
+                2 -> update()
+                3 -> list()
+                4 -> search()
+                -99 -> dummyData()
+                -1 -> println("Exiting App")
+                else -> println("Invalid Option")
+            }
+            println()
+        } while (input != -1)
+        logger.info { "Shutting Down Recipe Console App" }
     }
 
     fun menu() :Int { return recipeView.menu() }
