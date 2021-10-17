@@ -76,16 +76,25 @@ fun updateRecipe() {
     listRecipes()
     var searchId = getId()
     val aRecipe = search(searchId)
+    var tempTitle : String?
+    var tempIngred : String?
 
     if(aRecipe != null) {
         print("Enter a new Title for [ " + aRecipe.title + " ] : ")
-        aRecipe.title = readLine()!!
-        print("Enter a new Description for [ " + aRecipe.ingred + " ] : ")
-        aRecipe.ingred = readLine()!!
-        println(
-            "You updated [ " + aRecipe.title + " ] for title " +
-                    "and [ " + aRecipe.ingred + " ] for description"
-        )
+        tempTitle = readLine()!!
+        print("Enter new ingredients for [ " + aRecipe.ingred + " ] : ")
+        tempIngred = readLine()!!
+
+        if (!tempTitle.isNullOrEmpty() && !tempIngred.isNullOrEmpty()) {
+            aRecipe.title = tempTitle
+            aRecipe.ingred = tempIngred
+            println(
+                "You updated [ " + aRecipe.title + " ] for title " +
+                        "and [ " + aRecipe.ingred + " ] for ingredients")
+            logger.info("Recipe Updated : [ $aRecipe ]")
+        }
+        else
+            logger.info("Recipe Not Updated")
     }
     else
         println("Recipe Not Updated...")
