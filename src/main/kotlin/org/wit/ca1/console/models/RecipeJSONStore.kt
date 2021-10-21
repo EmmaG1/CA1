@@ -64,4 +64,10 @@ class RecipeJSONStore : RecipeStore {
         val jsonString = read(JSON_FILE)
         recipes = Gson().fromJson(jsonString, listType)
     }
+
+    //new
+    override fun delete(recipe: RecipeModel) {
+        recipes.remove(recipe)
+        serialize()
+    }
 }

@@ -15,6 +15,7 @@ class RecipeView {
         println(" 2. Update Recipe")
         println(" 3. List All Recipes")
         println(" 4. Search Recipes")
+        println(" 5. Delete Recipe")
         println("-1. Exit")
         println()
         print("Enter Option : ")

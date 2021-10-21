@@ -5,4 +5,5 @@ interface RecipeStore {
         fun findOne(id: Long): RecipeModel?
         fun create(recipe: RecipeModel)
         fun update(recipe: RecipeModel)
+        fun delete(recipe: RecipeModel) //NEW
 }

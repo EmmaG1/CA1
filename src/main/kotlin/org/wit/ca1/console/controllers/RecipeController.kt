@@ -26,6 +26,7 @@ class RecipeController {
                 2 -> update()
                 3 -> list()
                 4 -> search()
+                5 -> delete() //new
                 -99 -> dummyData()
                 -1 -> println("Exiting App")
                 else -> println("Invalid Option")
@@ -78,6 +79,21 @@ class RecipeController {
     fun search(id: Long) : RecipeModel? {
         var foundRecipe = recipes.findOne(id)
         return foundRecipe
+    }
+
+    //new
+    fun delete() {
+        recipeView.listRecipes(recipes)
+        var searchId = recipeView.getId()
+        val aRecipe = search(searchId)
+
+        if(aRecipe != null) {
+            recipes.delete(aRecipe)
+            println("Recipe Deleted...")
+            recipeView.listRecipes(recipes)
+        }
+        else
+            println("Recipe Not Deleted...")
     }
 
     fun dummyData() {
