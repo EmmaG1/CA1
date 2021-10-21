@@ -1,9 +1,6 @@
 package org.wit.ca1.console.views
 
-//import org.wit.ca1.console.main.recipeView
-//import org.wit.ca1.console.main.recipes
 import org.wit.ca1.console.models.RecipeJSONStore
-import org.wit.ca1.console.models.RecipeMemStore
 import org.wit.ca1.console.models.RecipeModel
 
 class RecipeView {

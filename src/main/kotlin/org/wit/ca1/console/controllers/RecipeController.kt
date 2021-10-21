@@ -2,13 +2,11 @@ package org.wit.ca1.console.controllers
 
 import mu.KotlinLogging
 import org.wit.ca1.console.models.RecipeJSONStore
-import org.wit.ca1.console.models.RecipeMemStore
 import org.wit.ca1.console.models.RecipeModel
 import org.wit.ca1.console.views.RecipeView
 
 class RecipeController {
 
-    //val recipes = RecipeMemStore()
     val recipes = RecipeJSONStore()
     val recipeView = RecipeView()
     val logger = KotlinLogging.logger {}
